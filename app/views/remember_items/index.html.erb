@@ -1,0 +1,29 @@
+<h1>Listing remember_items</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Content</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @remember_items.each do |remember_item| %>
+      <tr>
+        <td><%= remember_item.name %></td>
+        <td><%= remember_item.content %></td>
+        <td><%= link_to 'Show', remember_item %></td>
+        <td><%= link_to 'Edit', edit_remember_item_path(remember_item) %></td>
+        <td><%= link_to 'Destroy', remember_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Remember item', new_remember_item_path %>
