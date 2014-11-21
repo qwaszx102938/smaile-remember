@@ -1,6 +1,7 @@
 SmaileRemember::Application.routes.draw do
   resources :remember_items
   resources :users
+  get 'signup' => 'users#new'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
