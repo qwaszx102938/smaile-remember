@@ -1,7 +1,11 @@
 SmaileRemember::Application.routes.draw do
+  get "session/new"
   resources :remember_items
   resources :users
   get 'signup' => 'users#new'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
+  delete 'logout' => 'sessions#destroy'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
