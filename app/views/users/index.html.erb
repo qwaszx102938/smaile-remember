@@ -23,10 +23,9 @@
         <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-    <%= will_paginate %>
   </tbody>
 </table>
-
+<%= will_paginate %>
 <br>
 
 <%= link_to 'New User', new_user_path %>
