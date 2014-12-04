@@ -1,37 +1,37 @@
 
 <%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+    <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class="row">
-<div class="col-md-6 col-md-offset-3">
-  <div class="field">
-    <%= f.label :username,'用户名'%><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :email,'邮箱' %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password ,'输入密码'%><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation,'再次输入密码'%><br>
-    <%= f.password_field :password_confirmation %>
-  </div>
-   <div class="actions">
-    <input name="commit" type="submit" value="注册"  class="btn btn-primary" />
-  </div>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <div class="field">
+          <%= f.label :username,'用户名'%><br>
+          <%= f.text_field :username %>
+        </div>
+        <div class="field">
+          <%= f.label :email,'邮箱' %><br>
+          <%= f.text_field :email %>
+        </div>
+        <div class="field">
+          <%= f.label :password ,'输入密码'%><br>
+          <%= f.password_field :password %>
+        </div>
+        <div class="field">
+          <%= f.label :password_confirmation,'再次输入密码'%><br>
+          <%= f.password_field :password_confirmation %>
+        </div>
+        <div class="actions">
+          <input name="commit" type="submit" value="注册"  class="btn btn-primary" />
+        </div>
 <% end %>
 </div>
 </div>

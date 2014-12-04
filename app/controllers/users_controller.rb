@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only:[:index,:show, :edit, :update]
+  before_action :correct_user, only: [:edit, :update,:show]
 
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    @users = User.paginate(page: params[:page])
   end
 
   # GET /users/1
@@ -29,8 +31,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-		log_in @user
-	    flash[:success]='User was successfully created.'
+		  log_in @user
+	    flash[:success]='注册成功'
         format.html { redirect_to @user}
         format.json { render action: 'show', status: :created, location: @user }
       else
@@ -44,7 +46,9 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
+
+      if @user.update(update_user_params)
+        flash[:success]='修改资料成功'
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -74,4 +78,26 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:username, :password,:password_confirmation,:email)
     end
+
+  def update_user_params
+    params.require(:user).permit(:username,)
+  end
+
+  def logged_in_user
+    unless logged_in?
+      store_location
+      flash[:danger] = "请先登录"
+      redirect_to login_url
+    end
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      store_location
+      flash[:danger] = "该用户没有权限，请登录正确用户"
+      redirect_to login_url
+    end
+  end
+
 end
