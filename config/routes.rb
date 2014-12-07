@@ -1,7 +1,9 @@
 SmaileRemember::Application.routes.draw do
+  get "account_activations/get"
   get "session/new"
   resources :remember_items
   resources :users
+  resources :account_activations,only:[:get]
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

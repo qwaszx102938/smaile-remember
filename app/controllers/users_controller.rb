@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :logged_in_user, only:[:index,:show, :edit, :update]
   before_action :correct_user, only: [:edit, :update,:show]
+  before_action :admin, only: [:destory]
 
   # GET /users
   # GET /users.json
@@ -96,6 +97,15 @@ class UsersController < ApplicationController
     unless @user == current_user
       store_location
       flash[:danger] = "该用户没有权限，请登录正确用户"
+      redirect_to login_url
+    end
+  end
+  
+    def admin
+    logged_in_user
+    unless @current_user.admin?
+      store_location
+      flash[:danger] = "需具备管理员权限"
       redirect_to login_url
     end
   end

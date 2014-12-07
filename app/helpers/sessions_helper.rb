@@ -8,8 +8,16 @@ module SessionsHelper
 				@current_user ||= User.find_by id: session[:user_id]
 			elsif cookies.signed[:user_id]
 				user = User.find_by(id: cookies.signed[:user_id])
-				if user && user.authenticated?(cookies[:remember_token])
+				if user && user.authenticated?(:remember,cookies[:remember_token])
 				log_in user
+				    #判断用户是否激活了。
+					unless user.activated?
+						unless flash[:warming].nil?
+							flash[:warming]=flash[:warming]+"账户未激活"
+						else
+							flash[:warming]="账户未激活"
+						end
+					end
 				@current_user = user
 				end
 			end
