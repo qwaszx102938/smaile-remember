@@ -1,8 +1,8 @@
 class CreateRememberItems < ActiveRecord::Migration
   def change
     create_table :remember_items do |t|
-      t.text :name
-      t.text :content
+      t.references :user, index: true
+      t.references :remember, index: true
 
       t.timestamps
     end

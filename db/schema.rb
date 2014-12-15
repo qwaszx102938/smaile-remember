@@ -11,14 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204073233) do
+ActiveRecord::Schema.define(version: 20141215054009) do
 
   create_table "remember_items", force: true do |t|
-    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "remember_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name"
   end
+
+  add_index "remember_items", ["remember_id"], name: "index_remember_items_on_remember_id"
+  add_index "remember_items", ["user_id"], name: "index_remember_items_on_user_id"
+
+  create_table "remembers", force: true do |t|
+    t.string   "remember_content"
+    t.text     "remember_reference"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "remembers", ["remember_content"], name: "index_remembers_on_remember_content", unique: true
 
 # Could not dump table "users" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass

@@ -1,4 +1,4 @@
-<%=@user.username%>,ÄúºÃ£¡ Çëµã»÷¼¤»îÄúµÄÕËºÅ
+<%=@user.username%>,æ‚¨å¥½ï¼ è¯·ç‚¹å‡»æ¿€æ´»æ‚¨çš„è´¦å·
 <%= link_to "Activate", account_activation_url(@user.activation_token,email:@user.email)%>
 
 <%= @greeting %>, find me in app/views/app/views/user_mailer/account_activation.text.erb
