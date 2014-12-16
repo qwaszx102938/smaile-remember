@@ -1,2 +1,3 @@
 module TranslationsHelper
+
 end

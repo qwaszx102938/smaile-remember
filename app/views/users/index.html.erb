@@ -21,7 +21,7 @@
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
 		<% if current_user.admin? && !current_user?(user) %>
-			<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'È·¶¨É¾³ýÂð?' } %></td>
+			<td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'ç¡®å®šåˆ é™¤å—?' } %></td>
 		<% end %>
       </tr>
     <% end %>

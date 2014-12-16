@@ -56,3 +56,6 @@ gem 'bcrypt', '~> 3.1.7'
 # Use debugger
  gem 'byebug', '3.4.0'
 # gem 'debugger', group: [:development, :test]
+
+#httptools
+gem 'httparty', '~> 0.13.3'
