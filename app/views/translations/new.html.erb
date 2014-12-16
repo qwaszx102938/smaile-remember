@@ -1,0 +1,13 @@
+<div class="row">
+<h1 class="text-center">翻译</h1>
+  <%= form_for(:translation, url: translations_path,method:"post") do |f| %>
+
+    <div class="input-group input-group-lg">
+      <%= f.text_field :trans,class:"form-control",placeholder:"Trans" %>
+      <span class="input-group-btn">
+      <%= f.submit "搜索", class:"btn btn-default btn-lg"%>
+      </span>
+      </div>
+<% end %>
+</div>
+
