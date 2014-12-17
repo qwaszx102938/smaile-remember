@@ -4,15 +4,16 @@
   <div class="jumbotron">
     <%= form_for(:translation, url: translations_path, method: "post") do |f| %>
         <div class="input-group input-group-lg">
-          <%= f.text_field :trans, class: "form-control", placeholder: "Trans" %>
+          <%= f.text_field :trans, class: "form-control", placeholder: "Trans",
+                           value:(@translation.trans_name if @translation && @translation.trans_name) %>
           <span class="input-group-btn">
       <%= f.submit "搜索", class: "btn btn-default btn-lg" %>
       </span>
         </div>
     <% end %>
-    <script type="text/javascript" language="javascript" >
-         $('#translation_trans').select();
-        </script>
+    <script type="text/javascript" language="javascript">
+        $('#translation_trans').select();
+    </script>
   </div>
 </div>
 
