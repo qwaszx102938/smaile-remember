@@ -1,5 +1,6 @@
 # http://fanyi.youdao.com/openapi.do?keyfrom=smiletalking&key=956262318&type=data&doctype=json&version=1.1&q=good
 class TranslationsController < ApplicationController
+  before_action :logged_in_user, only:[:new,:create]
   def new
     @translation=Translation.new
   end
@@ -16,6 +17,8 @@ class TranslationsController < ApplicationController
       remember=Remember.create(remember_content: trans_name,
                                remember_reference: reference.to_json)
     end
+	if remember_item=RememberItem.find_by_
+	
     @translation=Translation.new remember.remember_reference
     #render text: @translation.trans_explains
   end
