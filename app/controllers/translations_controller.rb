@@ -20,17 +20,18 @@ class TranslationsController < ApplicationController
     end
     remember_item=RememberItem.find_by_user_id_and_remember_id current_user, remember
     unless remember_item
-      RememberItem.create(user: current_user, remember: remember)
+      remember_item=RememberItem.create(user: current_user, remember: remember)
     else
       remember_item.update updated_at: Time.now
     end
+    MemoryService.get_remember remember_item
     @translation=Translation.new remember.remember_reference
     #render text: @translation.trans_explains
   end
 
   #所有查过的记录
   def index
-    @remember_items=RememberItem.order("updated_at desc").where(user_id:current_user.id)
+    @remember_items=RememberItem.order("updated_at desc").where(user_id: current_user.id)
   end
 
 
