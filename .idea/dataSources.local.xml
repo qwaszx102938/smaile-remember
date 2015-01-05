@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails smaile-remember: development" uuid="44a04351-7ad0-4ef7-94e9-c2df84687e6a">
+      <secret-storage>memory</secret-storage>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,74 @@
+<h1 class="text-center">ALERT</h1>
+<div class="row">
+  <% if @alert_items && @alert_items.size>0 %>
+      <div class="" id="accordion" role="tablist" aria-multiselectable="true">
+        <% @alert_items.each do |alert_item| %>
+            <div class="panel panel-default">
+              <div class="panel-body">
+
+
+                <div class="container">
+                <div class="row">
+                  <div class="col-md-6">
+
+
+                      <a href="#collapse<%= alert_item.id %>" data-toggle="collapse" aria-controls="collapse<%= alert_item.id %>">
+                        <%= alert_item.remember_item.remember.to_translation.trans_name %>
+                      </a>
+                  </div>
+                  <div class="col-md-6">
+                      <div class="  btn-group btn-group ">
+                        <button type="button" class="btn ">
+                          <span class="glyphicon glyphicon-arrow-down"></span>
+                        </button>
+                        <a href="#" class="btn btn-danger " role="button">忘记</a>
+                        <a href="#" class="btn btn-success " role="button">记得</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+
+              <div id="collapse<%= alert_item.id %>" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+
+                  <% translation=alert_item.remember_item.remember.to_translation %>
+                  <% if translation %>
+                      <div class="container">
+                        <% if translation.trans_translation %>
+                            <div class="row">
+                              <div class="col-md-3"><h3 class="text-center text-primary">翻译:</h3></div>
+                              <div class="col-md-9">
+                                <% translation.trans_translation.each do |translation_t| %>
+                                    <p class="lead"><%= translation_t %></p>
+                                <% end %>
+                              </div>
+                            </div>
+                        <% end %>
+                        <% if translation.trans_explains %>
+                            <hr/>
+                            <div class="row">
+                              <div class="col-md-3"><h3 class="text-center text-primary">解析:</h3></div>
+                              <div class="col-md-9">
+                                <% translation.trans_explains.each do |explain| %>
+                                    <p class="lead"><%= explain %></p>
+                                <% end %>
+                              </div>
+                            </div>
+                        <% end %>
+                      </div>
+
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+        <% end %>
+      </div>
+  <% else %>
+      <div class="jumbotron">
+        <h1 class="text-center">没有新提醒</h1>
+      </div>
+  <% end %>
+</div>
+

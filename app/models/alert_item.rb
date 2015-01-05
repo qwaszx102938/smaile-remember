@@ -4,4 +4,5 @@ class AlertItem < ActiveRecord::Base
 
 
 
+
 end

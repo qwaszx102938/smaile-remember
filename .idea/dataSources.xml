@@ -4,9 +4,8 @@
     <data-source source="LOCAL" name="Rails smaile-remember: development" uuid="44a04351-7ad0-4ef7-94e9-c2df84687e6a">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:E:\railsproject\smile-remember\smaile-remember\db\development.sqlite3</jdbc-url>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
       <libraries />
     </data-source>
   </component>
 </project>
-
