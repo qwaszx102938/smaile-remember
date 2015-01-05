@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :logged_in_user, only:[:index,:show, :edit, :update]
-  before_action :correct_user, only: [:edit, :update,:show]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update]
+  before_action :correct_user, only: [:edit, :update, :show]
   before_action :admin, only: [:destory]
 
   # GET /users
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-	#debugger
+    #debugger
   end
 
   # GET /users/new
@@ -32,9 +32,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-		  log_in @user
-	    flash[:success]='注册成功'
-        format.html { redirect_to @user}
+        log_in @user
+        flash[:success]='注册成功'
+        format.html { redirect_to @user }
         format.json { render action: 'show', status: :created, location: @user }
       else
         format.html { render action: 'new' }
@@ -64,26 +64,25 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-			format.html { redirect_to users_url }
+      format.html { redirect_to users_url }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-	  def set_user
-      @user = User.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def user_params
-      params.require(:user).permit(:username, :password,:password_confirmation,:email)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def user_params
+    params.require(:user).permit(:username, :password, :password_confirmation, :email)
+  end
 
   def update_user_params
     params.require(:user).permit(:username,)
   end
-
 
 
   def correct_user
@@ -94,8 +93,8 @@ class UsersController < ApplicationController
       redirect_to login_url
     end
   end
-  
-    def admin
+
+  def admin
     logged_in_user
     unless @current_user.admin?
       store_location

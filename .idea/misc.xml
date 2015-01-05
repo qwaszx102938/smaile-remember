@@ -13,7 +13,14 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
+<<<<<<< HEAD
   <component name="ProjectRootManager" version="2" project-jdk-name="ruby-2.0.0-p195" project-jdk-type="RUBY_SDK" />
+=======
+  <component name="ProjectModuleManager">
+    <modules />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="ruby-2.0.0-p481" project-jdk-type="RUBY_SDK" />
+>>>>>>> 945953e52f50edc12afcda5fb3b00e1350371fbc
   <component name="RunManager">
     <list size="0" />
   </component>

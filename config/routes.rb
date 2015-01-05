@@ -3,12 +3,12 @@ SmaileRemember::Application.routes.draw do
   get "session/new"
   resources :users
   resources :account_activations,only:[:new]
-  resources :translations,only:[:new,:create]
+  resources :translations,only:[:new,:create,:index]
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
-  get 'translations'=> 'translations#new'
+  #get 'translations'=> 'translations#new'
   root 'translations#new'
 
 

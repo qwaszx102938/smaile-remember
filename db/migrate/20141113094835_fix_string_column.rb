@@ -4,10 +4,6 @@ class FixStringColumn < ActiveRecord::Migration
     t.remove :username, :email,:password
     t.string :username,:email, :password
    end
-   
-   change_table :remember_items do |t|
-   t.remove :name
-   t.string :name
-   end
+
   end
 end

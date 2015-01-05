@@ -1,6 +1,7 @@
 # http://fanyi.youdao.com/openapi.do?keyfrom=smiletalking&key=956262318&type=data&doctype=json&version=1.1&q=good
 class TranslationsController < ApplicationController
-  before_action :logged_in_user, only:[:new,:create]
+  before_action :logged_in_user, only: [:new, :create, :index]
+
   def new
     @translation=Translation.new
   end
@@ -17,11 +18,22 @@ class TranslationsController < ApplicationController
       remember=Remember.create(remember_content: trans_name,
                                remember_reference: reference.to_json)
     end
-	if remember_item=RememberItem.find_by_
-	
+    remember_item=RememberItem.find_by_user_id_and_remember_id current_user, remember
+    unless remember_item
+      remember_item=RememberItem.create(user: current_user, remember: remember)
+    else
+      remember_item.update updated_at: Time.now
+    end
+    MemoryService.get_remember remember_item
     @translation=Translation.new remember.remember_reference
     #render text: @translation.trans_explains
   end
+
+  #所有查过的记录
+  def index
+    @remember_items=RememberItem.order("updated_at desc").where(user_id: current_user.id)
+  end
+
 
   private
 
@@ -33,6 +45,7 @@ class TranslationsController < ApplicationController
                             }
 
   end
+
 
 end
 
