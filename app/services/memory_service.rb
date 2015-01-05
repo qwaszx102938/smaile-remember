@@ -31,23 +31,39 @@ class MemoryService
       #7-8
       8*24*60*60
       ]
-  def had_remembered remember_item
+  def self.had_remembered remember_item
+  
+		alert_item=AlertItem.find_by_remember_item_id remember_item
+		if alert_item
+		AlertItemHist.create remember_item:remember_item,user_id:(remember_item.user_id),state:1,level:alert_item,alert_time:(alert_item.alert_time)
+		if alert_item.level <8
+		alert_item.alert_time=Time.now+@@alert_list[alert_item.level]
+		alert_item.level=alert_item.level+1
+		alert_item.level.state=0;
+		end
+		else
+		alert_item.delete
+		end
+		
 
   end
 
   def self.get_remember remember_item
-    alert_item=AlertItem.find_by_remember_item_id remember_item
-    unless alert_item
+      alert_item=AlertItem.find_by_remember_item_id remember_item
       AlertItem.create remember_item:remember_item,user_id:(remember_item.user_id),state:0,level:1,alert_time:(Time.now+@@alert_list[0])
-    else
-      AlertItemHist .create remember_item:remember_item,user_id:(remember_item.user_id),state:0,level:1,alert_time:(alert_item.alert_time)
+    if alert_item
+      AlertItemHist.create remember_item:remember_item,user_id:(remember_item.user_id),state:0,level:alert_item.level,alert_time:(alert_item.alert_time)
       alert_item.delete
     end
-
   end
 
-  def miss remember_item
-
+  def self.miss_remember_item
+		alert_item=AlertItem.find_by_remember_item_id remember_item
+		if alert_item
+		AlertItemHist.create remember_item:remember_item,user_id:(remember_item.user_id),state:2,level:alert_item,alert_time:(alert_item.alert_time)
+		alert_item.alert_time=Time.now+@@alert_list[alert_item.level-1]
+		alert_item.level.state=0;
+		end
   end
 
 end

@@ -24,9 +24,10 @@ class TranslationsController < ApplicationController
     else
       remember_item.update updated_at: Time.now
     end
-    MemoryService.get_remember remember_item
-    @translation=Translation.new remember.remember_reference
-    #render text: @translation.trans_explains
+     MemoryService.get_remember remember_item
+     @translation=Translation.new remember.remember_reference
+	 alert_item=AlertItem.find_by_remember_item_id remember_item
+     #render text: (alert_item.alert_time)
   end
 
   #所有查过的记录
