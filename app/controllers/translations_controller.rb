@@ -26,7 +26,7 @@ class TranslationsController < ApplicationController
     end
      MemoryService.get_remember remember_item
      @translation=Translation.new remember.remember_reference
-	 alert_item=AlertItem.find_by_remember_item_id remember_item
+    alert_item=AlertItem.find_by_remember_item_id remember_item
      #render text: (alert_item.alert_time)
   end
 

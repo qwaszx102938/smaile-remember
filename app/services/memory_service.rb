@@ -30,40 +30,41 @@ class MemoryService
       3*24*60*60,
       #7-8
       8*24*60*60
-      ]
-  def self.had_remembered remember_item
-  
-		alert_item=AlertItem.find_by_remember_item_id remember_item
-		if alert_item
-		AlertItemHist.create remember_item:remember_item,user_id:(remember_item.user_id),state:1,level:alert_item,alert_time:(alert_item.alert_time)
-		if alert_item.level <8
-		alert_item.alert_time=Time.now+@@alert_list[alert_item.level]
-		alert_item.level=alert_item.level+1
-		alert_item.level.state=0;
-		end
-		else
-		alert_item.delete
-		end
-		
+  ]
+
+  def self.had_remembered alert_item
+
+    if alert_item
+      AlertItemHist.create remember_item: (alert_item.remember_item), user_id: (alert_item.user_id), state: 1, level: alert_item.level, alert_time: (alert_item.alert_time)
+      if alert_item.level<8
+        alert_item.alert_time=Time.now+@@alert_list[alert_item.level]
+        alert_item.level=alert_item.level+1
+        alert_item.state=0
+        alert_item.save
+      else
+        alert_item.delete
+      end
+    end
+
 
   end
 
   def self.get_remember remember_item
-      alert_item=AlertItem.find_by_remember_item_id remember_item
-      AlertItem.create remember_item:remember_item,user_id:(remember_item.user_id),state:0,level:1,alert_time:(Time.now+@@alert_list[0])
+    alert_item=AlertItem.find_by_remember_item_id remember_item
+    AlertItem.create remember_item: remember_item, user_id: (remember_item.user_id), state: 0, level: 1, alert_time: (Time.now+@@alert_list[0])
     if alert_item
-      AlertItemHist.create remember_item:remember_item,user_id:(remember_item.user_id),state:0,level:alert_item.level,alert_time:(alert_item.alert_time)
+      AlertItemHist.create remember_item: remember_item, user_id: (remember_item.user_id), state: 0, level: alert_item.level, alert_time: (alert_item.alert_time)
       alert_item.delete
     end
   end
 
-  def self.miss_remember_item
-		alert_item=AlertItem.find_by_remember_item_id remember_item
-		if alert_item
-		AlertItemHist.create remember_item:remember_item,user_id:(remember_item.user_id),state:2,level:alert_item,alert_time:(alert_item.alert_time)
-		alert_item.alert_time=Time.now+@@alert_list[alert_item.level-1]
-		alert_item.level.state=0;
-		end
+  def self.miss_alert_item alert_item
+    if alert_item
+      AlertItemHist.create remember_item: (alert_item.remember_item), user_id: (alert_item.user_id), state: 2, level: alert_item, alert_time: (alert_item.alert_time)
+      alert_item.alert_time=Time.now+@@alert_list[alert_item.level-1]
+      alert_item.state=0
+      alert_item.save
+    end
   end
 
 end

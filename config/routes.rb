@@ -4,9 +4,9 @@ SmaileRemember::Application.routes.draw do
   resources :users
   resources :account_activations,only:[:new]
   resources :translations,only:[:new,:create,:index]
-  resources :alerts
-  get "alerts/take"
-  get "alerts/miss"
+  resources :alerts,only:[:index]
+  get "alerts/take" => 'alerts#take'
+  get "alerts/miss"=> 'alerts#miss'
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
