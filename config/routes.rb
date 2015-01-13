@@ -1,6 +1,7 @@
 SmaileRemember::Application.routes.draw do
   get "account_activations/get"
   get "sessions/new"
+  post "sessions/extensionCreate" =>"sessions#extension_create"
   resources :users
   resources :account_activations,only:[:new]
   resources :translations,only:[:new,:create,:index]

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150105085211) do
+ActiveRecord::Schema.define(version: 20150112161915) do
 
   create_table "alert_item_hists", force: true do |t|
     t.integer  "remember_item_id"
