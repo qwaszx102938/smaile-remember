@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token,:extension_token
   before_save { self.email = email.downcase }
   validates :username, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -53,8 +53,8 @@ class User < ActiveRecord::Base
 
   #插件登陆
   def extension_login
-    self.remember_digest=User.new_token
+    self.extension_token = User.new_token
+    self.extension_digest=User.digest(self.extension_token)
     self.save
   end
-
 end
