@@ -26,7 +26,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     arel (4.0.2)
+    bcrypt (3.1.7)
     bcrypt (3.1.7-x86-mingw32)
+    bcrypt-ruby (3.0.1)
     bcrypt-ruby (3.0.1-x86-mingw32)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
@@ -129,7 +131,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
+  bcrypt (~> 3.1.0)
   bcrypt-ruby (~> 3.0.0)
   bootstrap-sass (~> 3.3.1)
   bootstrap-will_paginate (= 0.0.10)
