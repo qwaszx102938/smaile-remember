@@ -27,10 +27,14 @@ class SessionsController < ApplicationController
     #if request.format=="json"
       user=User.find_by email: (params[:email].downcase)
       if user && user.authenticate(params[:password])
-        if user.extension_login
-          render json: {email: user.email, digest: user.remember_digest}
-        end
-      end
+        #if user.extension_login
+		  user.extension_login
+          render json: {message:{result:"登陆成功"},
+		  email: user.email, digest: user.remember_digest}
+        #end
+	  else 
+	  render json: {message:{result:"密码或账号错误"}}
+	  end
       #render json: {message: "error"}
     #else
     #end
