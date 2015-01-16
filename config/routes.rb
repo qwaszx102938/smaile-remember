@@ -5,9 +5,15 @@ SmaileRemember::Application.routes.draw do
   resources :users
   resources :account_activations,only:[:new]
   resources :translations,only:[:new,:create,:index]
+  post "translations/extensionCreate" =>"translations#extension_create"
+
   resources :alerts,only:[:index]
   get "alerts/take" => 'alerts#take'
   get "alerts/miss"=> 'alerts#miss'
+  post "alerts/index" => 'alerts#extension_index'
+  post "alerts/extensionTake" => 'alerts#extension_take'
+  post "alerts/extensionMiss"=> 'alerts#extension_miss'
+
   get 'signup' => 'users#new'
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'

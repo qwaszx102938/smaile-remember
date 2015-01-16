@@ -23,4 +23,8 @@ class Translation
   def method_missing
     nil
   end
+
+  def to_json
+    {trans_name:trans_name,trans_translation:trans_translation,trans_explains:trans_explains}
+  end
 end

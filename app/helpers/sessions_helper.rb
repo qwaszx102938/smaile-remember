@@ -12,6 +12,13 @@ module SessionsHelper
         log_in user
         @current_user = user
       end
+    elsif params[:extinsion_token]
+      user = User.find_by(extension_digest:User.digest(params[:extinsion_token]))
+       if user
+         @current_user = user
+       else
+         render json:{message:{result:"没有该用户"}}
+       end
     end
     #判断用户是否激活了。
 =begin
